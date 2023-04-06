@@ -6,9 +6,7 @@ import { selectAuthUser } from "../../redux/authSlice";
 
 import { AuthNav } from "./AppBar.styled";
 
-export const AppBar = ({ theme }) => {
-  console.log("theme:", theme);
-
+export const AppBar = () => {
   const dispatch = useDispatch();
   const { name, isLoggedIn } = useSelector(selectAuthUser);
 
