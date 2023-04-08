@@ -1,5 +1,8 @@
 import styled from "styled-components";
 export const Button = styled.button`
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
   background: ${({ theme }) => theme.background};
   background: ${({ theme }) => theme.gradient};
   border: 2px solid ${({ theme }) => theme.toggleBorder};
@@ -11,7 +14,7 @@ export const Button = styled.button`
   margin: 0 auto;
   overflow: hidden;
   padding: 0.2rem;
-  position: relative;
+
   width: 3.5rem;
   height: 2rem;
 
