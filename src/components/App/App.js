@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { useSelector } from "react-redux";
 
 import { SharedLayout } from "..";
-import { SignIn, LogIn, Home } from "../../pages";
+import { SignIn, LogIn, Home, News } from "../../pages";
 import { selectTheme } from "../../redux/themeSlice";
 
 import { GlobalStyles } from "../globalStyles";
@@ -14,13 +14,15 @@ export function App() {
   const theme = useSelector(selectTheme);
 
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+    // <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+    <ThemeProvider theme={darkTheme}>
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path="signin" element={<SignIn />} />
           <Route path="login" element={<LogIn />} />
+          <Route path="news" element={<News />} />
         </Route>
       </Routes>
     </ThemeProvider>

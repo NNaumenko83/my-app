@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../../redux/authSlice";
 import { selectAuthUser } from "../../redux/authSlice";
 
 import { AuthNav } from "./AppBar.styled";
+import { CustomLink } from "../Link/CustomLink";
 
 export const AppBar = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,8 @@ export const AppBar = () => {
     <>
       {!isLoggedIn ? (
         <AuthNav>
-          <Link to="/signin">Sign in</Link> <Link to="/login">Log in</Link>
+          <CustomLink to="/signin">Sign in</CustomLink>{" "}
+          <CustomLink to="/login">Log in</CustomLink>
         </AuthNav>
       ) : (
         <>
@@ -25,6 +26,7 @@ export const AppBar = () => {
           <button type="button" onClick={handleLogOutButton}>
             Log out
           </button>
+          <CustomLink to="/news">News</CustomLink>
         </>
       )}
     </>

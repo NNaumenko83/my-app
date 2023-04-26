@@ -15,6 +15,7 @@ import { logIn } from "../../redux/authSlice";
 
 export const SignInForm = () => {
   const { setValue: setNameValue, ...name } = useInput();
+
   const { setValue: setEmailValue, ...email } = useInput();
   const { setValue: setPasswordValue, ...password } = useInput();
   const { setValue: setConfirmPasswordValue, ...confirmPassword } = useInput();

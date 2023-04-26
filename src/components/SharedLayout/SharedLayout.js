@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { AppBar } from "..";
-import { Header, Container } from "./SharedLayout.styled";
+import { Header, Container, Footer } from "./SharedLayout.styled";
 import { Toggle } from "../ToggleButton/ToggleButton";
 
 export const SharedLayout = () => {
@@ -16,6 +16,12 @@ export const SharedLayout = () => {
       </Header>
 
       <Outlet />
+
+      <Footer>
+        <Container>
+          <h1>Footer</h1>
+        </Container>
+      </Footer>
     </>
   );
 };

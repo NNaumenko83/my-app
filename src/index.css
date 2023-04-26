@@ -1,4 +1,4 @@
-@import-normalize;
+@import "modern-normalize";
 
 body {
   margin: 0;
@@ -31,9 +31,16 @@ ul,
 ol {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
