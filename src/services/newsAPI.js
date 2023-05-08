@@ -7,10 +7,15 @@ const newsApi = axios.create({
   baseURL: BASE_URL,
 });
 
-const config = { params: { apiKey: API_KEY, country: "ua" } };
-
 export const fetchAllNews = async () => {
-  const res = await newsApi.get("top-headlines", config);
-  console.log("res:", res);
+  const country = "ua";
+  const res = await newsApi.get(
+    `top-headlines?apiKey=${API_KEY}&country=${country}`
+  );
+  return res.data.articles;
+};
+
+export const fetchNewsByQuery = async (query) => {
+  const res = await newsApi.get(`everything?apiKey=${API_KEY}&q=${query}`);
   return res.data.articles;
 };

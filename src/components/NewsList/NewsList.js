@@ -2,6 +2,8 @@ import React from "react";
 import { NewsItem } from "../NewsItem/NewsItem";
 import { List } from "./NewsList.styled";
 
+
+
 export const NewsList = ({ newsList }) => {
   console.log("newsList:", newsList);
 

@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { useSelector } from "react-redux";
 
 import { SharedLayout } from "..";
-import { SignIn, LogIn, Home, News } from "../../pages";
+import { SignIn, LogIn, Home, News, Movies } from "../../pages";
 import { selectTheme } from "../../redux/themeSlice";
 
 import { GlobalStyles } from "../globalStyles";
@@ -23,6 +23,7 @@ export function App() {
           <Route path="signin" element={<SignIn />} />
           <Route path="login" element={<LogIn />} />
           <Route path="news" element={<News />} />
+          <Route path="movies" element={<Movies />} />
         </Route>
       </Routes>
     </ThemeProvider>

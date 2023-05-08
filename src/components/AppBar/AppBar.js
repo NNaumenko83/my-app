@@ -22,11 +22,12 @@ export const AppBar = () => {
         </AuthNav>
       ) : (
         <>
+          <CustomLink to="/news">News</CustomLink>
+          <CustomLink to="/movies">Movies</CustomLink>
           <p>Hello, {name}</p>
           <button type="button" onClick={handleLogOutButton}>
             Log out
           </button>
-          <CustomLink to="/news">News</CustomLink>
         </>
       )}
     </>
