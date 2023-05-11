@@ -1,7 +1,5 @@
 import React from "react";
 
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 
@@ -11,7 +9,7 @@ import { List } from "./NewsSceleton.styled";
 export const NewsSceleton = () => {
   return (
     <List>
-      {Array.from(new Array(6)).map(() => {
+      {Array.from(new Array(18)).map(() => {
         return (
           <NewsCard>
             <Stack spacing={1}>

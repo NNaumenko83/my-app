@@ -14,6 +14,20 @@ export const SharedLayout = () => {
           <AppBar />
         </Container>
       </Header>
+      {/* <aside
+        style={{
+          border: "1px solid red",
+          width: "20%",
+          paddingLeft: "0.5rem",
+          marginLeft: "0.5rem",
+          float: "right",
+          boxShadow: "inset 5px 0 5px -5px #29627e",
+          fontStyle: "italic",
+          color: " #29627e",
+        }}
+      >
+        <h6>Бокова панель</h6>
+      </aside> */}
 
       <Outlet />
 

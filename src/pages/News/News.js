@@ -1,11 +1,8 @@
 import React from "react";
-import { useEffect, useState } from "react";
+
 import { useSearchParams } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input";
-
-import { Puff } from "react-loader-spinner";
-
-import { useInput } from "../../Hooks/useInput";
+import { useQuery } from "@tanstack/react-query";
 
 import { fetchAllNews, fetchNewsByQuery } from "../../services/newsAPI";
 
@@ -13,52 +10,30 @@ import { NewsList } from "../../components/NewsList/NewsList";
 import { Container } from "./News.styled";
 import { NewsSceleton } from "../../components/NewsSceleton/NewsSceleton";
 
-const handleButtonClick = () => {};
-
 export const News = () => {
-  const [allNews, setAllNews] = useState([]);
-  const [queryNews, setQueryNews] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const { setValue, ...input } = useInput();
   const [searchParams, setSearchParams] = useSearchParams();
   console.log("searchParams:", searchParams);
 
   const newsName = searchParams.get("name") ?? "";
   console.log("newsName:", newsName);
 
-  useEffect(() => {
-    setIsLoading(true);
-    const getAllNews = async () => {
-      try {
-        const res = await fetchAllNews();
-        setAllNews(res);
-      } catch (error) {
-        setErrorMessage(error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getAllNews();
-  }, []);
+  // use React Query
+  const allNews = useQuery({
+    queryKey: ["news"],
+    queryFn: fetchAllNews,
+  });
+  console.log("allNews.data:", allNews.data);
 
-  useEffect(() => {
-    if (!newsName) {
-      return;
-    }
-    setIsLoading(true);
-    const getNews = async (qury) => {
-      try {
-        const res = await fetchNewsByQuery(qury);
-        setQueryNews(res);
-        setAllNews([]);
-      } catch (error) {
-      } finally {
-        setIsLoading(false);
+  const queryNews = useQuery({
+    queryKey: ["news", newsName],
+    queryFn: () => {
+      if (!newsName) {
+        console.log("Тут нічого");
+        return null;
       }
-    };
-    getNews(newsName);
-  }, [newsName]);
+      return fetchNewsByQuery(newsName);
+    },
+  });
 
   const updataQueryString = (e) => {
     console.log("name:", e.target.value);
@@ -76,11 +51,14 @@ export const News = () => {
         value={newsName}
         onChange={updataQueryString}
       />
-      <button onClick={handleButtonClick}>Search</button>
+      {/* <button onClick={handleButtonClick}>Search</button> */}
 
-      {allNews.length > 0 && <NewsList newsList={allNews} />}
-      {queryNews.length > 0 && <NewsList newsList={queryNews} />}
-      {isLoading && <NewsSceleton />}
+      {queryNews.data?.length > 0 ? (
+        <NewsList newsList={queryNews.data} />
+      ) : (
+        allNews.data?.length > 0 && <NewsList newsList={allNews.data} />
+      )}
+      {allNews.isLoading && <NewsSceleton />}
     </Container>
   );
 };
