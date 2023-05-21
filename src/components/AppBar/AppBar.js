@@ -17,18 +17,46 @@ export const AppBar = () => {
     <>
       {!isLoggedIn ? (
         <AuthNav>
-          <CustomLink to="/signin">Sign in</CustomLink>{" "}
+          <CustomLink to="/signin" style={{ color: "black" }}>
+            Sign in
+          </CustomLink>
           <CustomLink to="/login">Log in</CustomLink>
         </AuthNav>
       ) : (
-        <>
-          <CustomLink to="/news">News</CustomLink>
-          <CustomLink to="/movies">Movies</CustomLink>
-          <p>Hello, {name}</p>
-          <button type="button" onClick={handleLogOutButton}>
-            Log out
-          </button>
-        </>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            outline: "1px solid blue",
+            justifyContent: "space-between",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              gap: "30px",
+              margin: "0 auto",
+              outline: "1px solid red",
+            }}
+          >
+            <CustomLink to="/news">News</CustomLink>
+            <CustomLink to="/movies">Movies</CustomLink>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              gap: "10px",
+
+              outline: "1px solid red",
+            }}
+          >
+            <p>Hello, {name}</p>
+            <button type="button" onClick={handleLogOutButton}>
+              Log out
+            </button>
+          </div>
+        </div>
       )}
     </>
   );

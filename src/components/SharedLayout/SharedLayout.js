@@ -9,7 +9,7 @@ export const SharedLayout = () => {
     <>
       <Header>
         <Container>
-          <h1>MY APP</h1>
+          <h1 style={{ width: "150px" }}>MY APP</h1>
           <Toggle />
           <AppBar />
         </Container>
